@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhattsappClone">
-<!--        <activity android:name=".LoginActivity">-->
-
-<!--        </activity>-->
+        <activity android:name=".OtpActivity"></activity>
+        <!-- <activity android:name=".LoginActivity"> -->
+        <!-- </activity> -->
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

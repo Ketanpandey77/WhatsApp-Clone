@@ -45,7 +45,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun startVerify() {
         startPhoneNumberVerification(phoneNumber!!)
-        showTimer(30000)
+        showTimer(60000)
         progressDialog=createProgressDialog("Sending a verification code",false)
         progressDialog.show()
     }
@@ -53,7 +53,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     private fun startPhoneNumberVerification(phoneNumber: String) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,
-                30,
+                60,
                 TimeUnit.SECONDS,
                 this,
                 callbacks
@@ -197,6 +197,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                                 progressDialog.dismiss()
                             }
                             //First Time Login
+
                             if (task.result?.additionalUserInfo?.isNewUser == true) {
                                 showSignUpActivity()
                             } else {
@@ -252,7 +253,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
             btnResend -> {
                 if (mResendToken != null) {
                     resendVerificationCode(phoneNumber.toString(), mResendToken)
-                    showTimer(30000)
+                    showTimer(60000)
                     progressDialog = createProgressDialog("Sending a verification code", false)
                     progressDialog.show()
                 } else {
@@ -269,7 +270,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         ) {
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     phoneNumber, // Phone number to verify
-                    30, // Timeout duration
+                    60, // Timeout duration
                     TimeUnit.SECONDS, // Unit of timeout
                     this, // Activity (for callback binding)
                     callbacks, // OnVerificationStateChangedCallbacks

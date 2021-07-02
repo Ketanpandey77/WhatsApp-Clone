@@ -94,10 +94,12 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                     // Invalid request
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
+                    Log.e("HELLO","Failed1")
                     Log.e("Exception:", "FirebaseTooManyRequestsException", e)
                 }
                 // Show a message and update the UI
                 // Show a message and update the UI
+
                 notifyUserAndRetry("Your Phone Number might be wrong or connection error.Retry again!")
             }
 
@@ -201,7 +203,8 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                             if (task.result?.additionalUserInfo?.isNewUser == true) {
                                 showSignUpActivity()
                             } else {
-                                showHomeActivity()
+                                showSignUpActivity()
+                                //showHomeActivity()  //for testing purpose
                             }
                         } else {
 
@@ -226,7 +229,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         finish()
     }
 
-    fun Context.createProgressDialog(message: String, isCancellable: Boolean): ProgressDialog {
+    private fun Context.createProgressDialog(message: String, isCancellable: Boolean): ProgressDialog {
             return ProgressDialog(this).apply {
                 setCancelable(isCancellable)
                 setMessage(message)

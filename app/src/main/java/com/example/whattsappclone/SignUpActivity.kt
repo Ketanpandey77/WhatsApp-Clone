@@ -7,9 +7,27 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
+
+    private val storage by lazy {
+        FirebaseStorage.getInstance()
+    }
+    private val auth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    private val database by lazy {
+        FirebaseFirestore.getInstance()
+    }
+    private lateinit var downloadUrl: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -59,6 +77,25 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun startUpload(it: Uri) {
-        TODO("Not yet implemented")
+        btnNext.isEnabled=false
+        val ref = storage.reference.child("uploads/" + auth.uid.toString())
+        val uploadTask = ref.putFile(it)
+        uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            return@Continuation ref.downloadUrl
+        }).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                downloadUrl = task.result.toString()
+                btnNext.isEnabled = true
+            } else {
+                btnNext.isEnabled = true
+            }
+        }.addOnFailureListener {
+
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +36,26 @@ class SignUpActivity : AppCompatActivity() {
         ivProfile.setOnClickListener {
             checkPermissionForImage()
         }
+
+        btnNext.setOnClickListener {
+            btnNext.isEnabled=false
+            val name=etName.text.toString()
+            if (!::downloadUrl.isInitialized) {
+                Toast.makeText(this,"Photo cannot be empty",Toast.LENGTH_SHORT).show()
+            } else if (name.isEmpty()) {
+                Toast.makeText(this,"Photo cannot be empty",Toast.LENGTH_SHORT).show()
+            } else{
+                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnai url*/, auth.uid!!)
+                database.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }.addOnFailureListener {
+                    btnNext.isEnabled = true
+                }
+            }
+        }
+
     }
 
     private fun checkPermissionForImage() {

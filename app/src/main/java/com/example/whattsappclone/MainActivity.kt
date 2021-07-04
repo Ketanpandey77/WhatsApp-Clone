@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter=ScreenSlideAdapter(this)
 
 //        to swipe the tabs
-        TabLayoutMediator(tabs, viewPager,
+        TabLayoutMediator(tlTablayout, viewPager,
                 TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                     when (position) {
                         0 -> {

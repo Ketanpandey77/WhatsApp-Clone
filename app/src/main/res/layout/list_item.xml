@@ -68,8 +68,8 @@
                 android:layout_weight="10"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textSize="14sp"
-                android:text="Hey there!! i am using whatsapp" />
+                android:text="Hey there!! I am using whatsapp"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvCount"
@@ -86,8 +86,7 @@
                 android:text="4"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
-                android:visibility="visible"
-                tools:text="6" />
+                android:visibility="visible" />
 
         </LinearLayout>
 

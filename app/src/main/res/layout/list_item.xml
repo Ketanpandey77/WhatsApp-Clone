@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:focusable="true"
+    android:clickable="true"
+    android:padding="10dp"
+    android:background="?attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivImageView"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_default_avatar"
+        android:focusable="true"
+        android:clickable="true"
+        android:adjustViewBounds="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Ketan Pandey"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:visibility="visible"
+                android:text="30/01/20" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textSize="14sp"
+                android:text="Hey there!! i am using whatsapp" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:background="@drawable/count_background"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="8dp"
+                android:text="4"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:visibility="visible"
+                tools:text="6" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
